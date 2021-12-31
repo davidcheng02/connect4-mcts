@@ -13,7 +13,7 @@ def mcts_strategy(num_iter):
 
 def object_in_pos_dict(pos, pos_dict):
     for key in pos_dict.keys():
-        if key.pos == pos.pos and key.turn == pos.turn:
+        if key.board == pos.board and key.turn == pos.turn:
             return key
 
     return None
@@ -200,29 +200,3 @@ def print_2d_array(arr, num_rows, num_cols):
         for col in range(num_cols):
             print(arr[row][col], end=' ')
         print()
-
-yellow = 0
-red = 1
-
-gameboard =    [[0, 0, 0, 0, 0, 0, 0], 
-                [0, 0, 0, 2, 0, 0, 0], 
-                [0, 0, 2, 2, 2, 1, 0], 
-                [0, 0, 1, 1, 2, 2, 0], 
-                [0, 1, 2, 1, 1, 1, 2], 
-                [1, 1, 2, 1, 1, 2, 2]]
-
-# gameboard =    [[0, 0, 0, 0, 0, 0, 0], 
-#                 [0, 0, 0, 0, 0, 0, 0], 
-#                 [0, 0, 0, 0, 0, 0, 0], 
-#                 [0, 0, 0, 0, 0, 0, 0], 
-#                 [0, 0, 0, 0, 0, 0, 0], 
-#                 [0, 0, 0, 0, 0, 0, 0]]
-
-pos = Connect4(gameboard, red)
-
-next_connect4_pos = mcts(1000, pos)
-
-if next_connect4_pos == None:
-    print("Already game over.")
-else:
-    print_2d_array(next_connect4_pos.pos, 6, 7)
